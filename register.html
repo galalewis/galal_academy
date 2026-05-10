@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد | جلال أكاديمي</title>
+    
+    <link rel="icon" type="image/jpeg" href="mylogo.png.jpeg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* تنسيق الهيدر المنفصل لضمان عدم التداخل */
+        .top-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+        }
+
+        .back-btn-box {
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a1a1a;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--primary);
+            transition: 0.3s;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn-box:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .nav-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+            cursor: pointer;
+        }
+
+        /* حاوية الفورم */
+        .register-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 120px 20px 40px; /* مساحة للهيدر */
+        }
+
+        .register-card-main {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 10;
+        }
+
+        label { color: #ccc; display: block; margin-top: 12px; font-size: 0.9rem; text-align: right; }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 5px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: #000;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+            text-align: right;
+        }
+
+        input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 8px var(--primary); }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background: var(--primary);
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover { box-shadow: 0 0 20px var(--primary); filter: brightness(1.2); }
+    </style>
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <div class="top-nav">
+        <div class="back-btn-box" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+            <span>رجوع</span>
+        </div>
+        <img src="mylogo.png.jpeg" alt="Logo" class="nav-logo" onclick="location.href='index.html'">
+    </div>
+
+    <div class="register-wrapper">
+        <div class="logo" style="margin-bottom: 20px;">GALAL <span>REGISTER</span></div>
+        
+        <div class="register-card-main">
+            <h3 style="text-align: center; color: #fff; margin-bottom: 10px;">إنشاء حساب طالب جديد</h3>
+            <form id="registerForm">
+                <label><i class="fas fa-user"></i> الاسم بالكامل</label>
+                <input type="text" id="userName" placeholder="أدخل اسمك الثلاثي" required>
+                
+                <label><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                <input type="email" id="userEmail" placeholder="example@mail.com" required>
+                
+                <label><i class="fas fa-graduation-cap"></i> المسار الدراسي</label>
+                <select id="userTrack" required>
+                    <option value="" disabled selected>اختر مسارك التعليمي</option>
+                    <option value="secondary">المسار الثانوي</option>
+                    <option value="university">المسار الجامعي</option>
+                    <option value="freelance">مبرمج من الصفر</option>
+                </select>
+
+                <label><i class="fas fa-lock"></i> كلمة المرور</label>
+                <input type="password" id="userPass" placeholder="أدخل كلمة مرور قوية" required>
+                
+                <button type="submit" class="submit-btn">إنشاء الحساب</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: #888; font-size: 0.9rem;">
+                لديك حساب بالفعل؟ <a href="login.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">سجل دخولك</a>
+            </p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9Qc20GONhXuUn-m_rV1WrHNJ3nj_Txl4",
+            authDomain: "galal-academy.firebaseapp.com",
+            projectId: "galal-academy",
+            storageBucket: "galal-academy.firebasestorage.app",
+            messagingSenderId: "713668412187",
+            appId: "1:713668412187:web:e2ab1024c6422c76d389be"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerText = "جاري الحفظ...";
+            btn.disabled = true;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, 
+                    document.getElementById('userEmail').value, 
+                    document.getElementById('userPass').value
+                );
+                
+                await setDoc(doc(db, "students", userCredential.user.uid), {
+                    fullName: document.getElementById('userName').value,
+                    email: document.getElementById('userEmail').value,
+                    track: document.getElementById('userTrack').value,
+                    createdAt: new Date()
+                });
+
+                alert("تم التسجيل بنجاح!");
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("خطأ: " + error.message);
+                btn.innerText = "إنشاء الحساب";
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

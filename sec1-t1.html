@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصف الأول الثانوي | GALAL ACADEMY</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #00e0ff;
+            --bg-dark: #000000;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            /* ألوان المنصات */
+            --fb: #1877F2; --wa: #25D366; --ig: #E4405F; 
+            --tk: #ffffff; --yt: #FF0000; --li: #0A66C2; --vf: #e60000;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .background-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 20%, #0d2830 0%, #000 70%);
+            z-index: -1;
+        }
+
+        /* الهيدر: اللوجو يمين والرجوع يسار */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .top-logo {
+            width: 60px; height: 60px; border-radius: 50%;
+            border: 2px solid var(--primary-blue); box-shadow: 0 0 15px var(--primary-blue);
+        }
+
+        .back-btn {
+            background: var(--primary-blue); color: #000;
+            padding: 10px 25px; border-radius: 50px;
+            text-decoration: none; font-weight: bold; transition: 0.3s;
+        }
+        .back-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary-blue); }
+
+        /* المحتوى الرئيسي في المنتصف */
+        .hero { text-align: center; margin-top: 20px; }
+        .profile-img {
+            width: 130px; height: 130px; border-radius: 50%;
+            border: 3px solid var(--primary-blue); box-shadow: 0 0 30px var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        .hero h1 { font-size: 1.8rem; margin: 15px 20px; line-height: 1.5; }
+
+        /* أزرار الجروبات */
+        .groups { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+        .group-btn {
+            padding: 12px 25px; border-radius: 50px; text-decoration: none; color: #fff;
+            font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .btn-wa { background: #25d366; }
+        .btn-tg { background: #0088cc; }
+        .btn-paid { background: #ffcc00; color: #000; }
+        .group-btn:hover { transform: translateY(-5px); filter: brightness(1.2); }
+
+        /* شبكة الكروت التعليمية */
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .card {
+            background: var(--card-bg); padding: 40px 20px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1); text-align: center;
+            text-decoration: none; color: #fff; transition: 0.4s;
+        }
+        .card:hover { border-color: var(--primary-blue); transform: translateY(-10px); background: rgba(0,224,255,0.05); }
+        .card i { font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px; }
+
+        /* الفوتر الخارق */
+        footer { background: #050505; padding: 50px 20px; margin-top: 50px; text-align: center; }
+        .social-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .social-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; width: 90px; }
+        .social-circle {
+            width: 55px; height: 55px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center; color: #fff;
+            font-size: 1.5rem; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .social-item span { font-size: 0.8rem; margin-top: 8px; color: #888; transition: 0.3s; }
+
+        /* تأثير الدوران عند الضغط والتلوين عند الوقوف */
+        .social-item:active .social-circle { transform: rotate(360deg); }
+        
+        .fb:hover .social-circle { color: var(--fb); border-color: var(--fb); box-shadow: 0 0 15px var(--fb); }
+        .wa:hover .social-circle { color: var(--wa); border-color: var(--wa); box-shadow: 0 0 15px var(--wa); }
+        .tk:hover .social-circle { color: var(--tk); border-color: var(--tk); box-shadow: 0 0 15px var(--tk); }
+        .ig:hover .social-circle { color: var(--ig); border-color: var(--ig); box-shadow: 0 0 15px var(--ig); }
+        .yt:hover .social-circle { color: var(--yt); border-color: var(--yt); box-shadow: 0 0 15px var(--yt); }
+        .li:hover .social-circle { color: var(--li); border-color: var(--li); box-shadow: 0 0 15px var(--li); }
+        .vf:hover .social-circle { color: var(--vf); border-color: var(--vf); box-shadow: 0 0 15px var(--vf); }
+        .social-item:hover span { color: #fff; }
+
+        .vf-num { font-size: 0.7rem; color: var(--vf); font-weight: bold; margin-bottom: 2px; }
+    </style>
+</head>
+<body>
+    <div class="background-glow"></div>
+
+    <header>
+        <img src="mylogo.png.jpeg" class="top-logo">
+        <a href="secondary.html" class="back-btn"><i class="fas fa-arrow-left"></i> رجوع</a>
+    </header>
+
+    <section class="hero">
+        <img src="mylogo.png.jpeg" class="profile-img">
+        <h1>مرحباً بك في قسم الصف الأول الثانوي الترم الأول<br>لمادة البرمجة والذكاء الاصطناعي</h1>
+        
+        <div class="groups">
+            <a href="https://wa.me/201038637817" target="_blank" class="group-btn btn-wa"><i class="fab fa-whatsapp"></i> جروب الواتس</a>
+            <a href="#" class="group-btn btn-tg"><i class="fab fa-telegram-plane"></i> جروب التليجرام</a>
+            <a href="#" class="group-btn btn-paid"><i class="fas fa-crown"></i> الكورسات المدفوعة</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="grid">
+            <a href="#" class="card"><i class="fas fa-book"></i><h3>شرح نظري</h3></a>
+            <a href="#" class="card"><i class="fas fa-edit"></i><h3>حل نظري</h3></a>
+            <a href="#" class="card"><i class="fas fa-laptop-code"></i><h3>شرح عملي</h3></a>
+            <a href="#" class="card"><i class="fas fa-check-double"></i><h3>حل عملي</h3></a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-grid">
+            <a href="https://wa.me/201038637817" target="_blank" class="social-item wa"><div class="social-circle"><i class="fab fa-whatsapp"></i></div><span>واتساب</span></a>
+            <a href="https://www.facebook.com/share/1KyWePKFbn/" target="_blank" class="social-item fb"><div class="social-circle"><i class="fab fa-facebook-f"></i></div><span>فيسبوك</span></a>
+            <a href="https://www.tiktok.com/@galal.ewis" target="_blank" class="social-item tk"><div class="social-circle"><i class="fab fa-tiktok"></i></div><span>تيك توك</span></a>
+            <a href="https://www.instagram.com/galal.ewis/" target="_blank" class="social-item ig"><div class="social-circle"><i class="fab fa-instagram"></i></div><span>إنستجرام</span></a>
+            <a href="https://www.youtube.com/@galalacademy" target="_blank" class="social-item yt"><div class="social-circle"><i class="fab fa-youtube"></i></div><span>يوتيوب</span></a>
+            <a href="https://www.linkedin.com/in/galal-ewis-2790b83a8" target="_blank" class="social-item li"><div class="social-circle"><i class="fab fa-linkedin-in"></i></div><span>LinkedIn</span></a>
+            <a href="https://wa.me/201038639818" target="_blank"    class="social-item vf"><div class="social-circle"><i class="fas fa-wallet"></i></div><span class="vf-num">01038639818</span><span>فودافون كاش</span></a>
+        </div>          
+    </footer>
+</body>
+</html>

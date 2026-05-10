@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galal Academy | جلال أكاديمي</title>
+    
+    <link rel="icon" type="image/jpeg" href="mylogo.png.jpeg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .auth-container {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 9999;
+        }
+
+        .auth-link {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+
+        .auth-link:hover {
+            background: var(--primary);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        #dashboardBtn { display: none; background: #39ff14; color: #000; border-color: #39ff14; }
+        #logoutBtn { display: none; background: #ff4b2b; border-color: #ff4b2b; }
+
+        header {
+            position: relative;
+            padding: 100px 20px 40px;
+            text-align: center;
+        }
+
+        .main-logo-img {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        body { opacity: 0; transition: opacity 0.4s; background: #020617; color: white; }
+        body.ready { opacity: 1; }
+    </style>
+</head>
+<body class="ready">
+    <div class="background-glow"></div>
+
+    <header>
+        <div class="auth-container">
+            <a href="login.html" id="loginBtn" class="auth-link">
+                <i class="fas fa-user-lock"></i> تسجيل الدخول
+            </a>
+            <a href="register.html" id="registerBtn" class="auth-link">
+                <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+            </a>
+            <a href="dashboard.html" id="dashboardBtn" class="auth-link">
+                <i class="fas fa-chalkboard-teacher"></i> لوحة التحكم
+            </a>
+            <div id="logoutBtn" class="auth-link">
+                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+            </div>
+        </div>
+
+        <img src="mylogo.png.jpeg" alt="Logo" class="main-logo-img" onclick="location.href='index.html'">
+
+        <div class="logo" style="display: inline-block;">
+            <span style="font-size: 3rem; font-weight: bold;">GALAL <span>ACADEMY</span></span>
+        </div>
+        <p class="tagline" style="font-size: 1.2rem; color: #ccc;">رؤية 2027: احتراف البرمجة والذكاء الاصطناعي</p>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+            <div class="card" onclick="window.location.href='secondary.html'">
+                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                <h2>المسار الثانوي</h2>
+                <p>مناهج البرمجة، الفيزياء، والذكاء الاصطناعي.</p>
+                <div class="badge">نظري + عملي</div>
+            </div>
+
+            <div class="card" onclick="window.location.href='university.html'">
+                <div class="icon"><i class="fas fa-university"></i></div>
+                <h2>المسار الجامعي</h2>
+                <p>دليلك للتفوق في حاسبات جامعة الزقازيق.</p>
+                <div class="badge">طلبة الزقازيق</div>
+            </div>
+
+            <div class="card" onclick="window.location.href='basics.html'">
+                <div class="icon"><i class="fas fa-robot"></i></div>
+                <h2>مبرمج من الصفر 2027</h2>
+                <p>مسارات Web, C++, Python مدعومة بالذكاء الاصطناعي.</p>
+                <div class="badge">رؤية حديثة</div>
+            </div>
+
+            <div class="card" onclick="window.location.href='stats.html'">
+                <div class="icon" style="color: #39ff14;"><i class="fas fa-chart-line"></i></div>
+                <h2>إحصائيات المنصة</h2>
+                <p>انضم إلينا الآن (تحديث لحظي لعدد الطلاب).</p>
+                <div class="badge">لايف</div>
+            </div>
+
+            <div class="card" onclick="window.location.href='contact.html'">
+                <div class="icon"><i class="fas fa-paper-plane"></i></div>
+                <h2>تواصل معنا</h2>
+                <p>تواصل مباشر مع المبرمج جلال عويس.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>تم التطوير بواسطة المبرمج جلال عويس &copy; 2026</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9Qc20GONhXuUn-m_rV1WrHNJ3nj_Txl4",
+            authDomain: "galal-academy.firebaseapp.com",
+            projectId: "galal-academy",
+            storageBucket: "galal-academy.firebasestorage.app",
+            messagingSenderId: "713668412187",
+            appId: "1:713668412187:web:e2ab1024c6422c76d389be"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // إذا كان مسجل دخول: أظهر لوحة التحكم والخروج
+                document.getElementById('loginBtn').style.display = 'none';
+                document.getElementById('registerBtn').style.display = 'none';
+                document.getElementById('dashboardBtn').style.display = 'flex';
+                document.getElementById('logoutBtn').style.display = 'flex';
+            } else {
+                // إذا لم يكن مسجل دخول: أظهر الدخول والتسجيل
+                document.getElementById('loginBtn').style.display = 'flex';
+                document.getElementById('registerBtn').style.display = 'flex';
+                document.getElementById('dashboardBtn').style.display = 'none';
+                document.getElementById('logoutBtn').style.display = 'none';
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth).then(() => { location.reload(); });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+:root {
+    --primary: #00f2fe;
+    --secondary: #4facfe;
+    --accent: #f093fb;
+    --bg-dark: #020617;
+    --card-bg: rgba(15, 23, 42, 0.7);
+    --text-white: #f8fafc;
+    --text-dim: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.background-glow {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 50%, #1e293b 0%, #020617 100%);
+    z-index: -1;
+    transition: background 0.3s ease;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.logo {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.5));
+}
+
+.logo span {
+    color: var(--text-white);
+    -webkit-text-fill-color: var(--text-white);
+}
+
+.tagline {
+    font-size: 1.3rem;
+    color: var(--text-dim);
+    margin-top: 15px;
+    font-weight: 300;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+}
+
+/* تأثير الإضاءة الدوارة عند الوقوف على الكارت */
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.icon {
+    font-size: 3.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .icon {
+    transform: scale(1.1);
+}
+
+.card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 5px 15px;
+    background: rgba(0, 242, 254, 0.1);
+    color: var(--primary);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    border: 1px solid var(--primary);
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-dim);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
