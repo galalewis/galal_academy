@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
              * استخدام الـ Backticks () حصرياً هنا 
              * لضمان عمل المتغيرات ${x} و ${y} بشكل صحيح
              */
-            bg.style.background = radial-gradient(circle at ${x}% ${y}%, #1e293b 0%, #020617 100%)`;
+            bg.style.background = `radial-gradient(circle at ${x}% ${y}%, #1e293b 0%, #020617 100%)`;
         });
     }
 
