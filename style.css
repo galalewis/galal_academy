@@ -83,6 +83,7 @@ header {
     overflow: hidden;
 }
 
+/* تأثير الإضاءة الدوارة عند الوقوف على الكارت */
 .card:hover {
     transform: translateY(-15px) scale(1.02);
     border-color: var(--primary);
@@ -110,40 +111,6 @@ header {
 .card p {
     color: var(--text-dim);
     line-height: 1.6;
-}
-
-/* التعديلات الجديدة للأزرار */
-.card-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.action-btn {
-    display: block;
-    padding: 12px 20px;
-    margin-bottom: 10px; /* مسافة بين الأزرار */
-    background: #00b4d8; /* هذا هو اللون الأزرق السماوي (يمكنك تغييره حسب الرغبة) */
-    color: white;         /* لون النص */
-    text-decoration: none;
-    border-radius: 8px;   /* حواف دائرية للمربعات */
-    text-align: center;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.action-btn:hover {
-    background: #0096c7; /* لون أغمق قليلاً عند تمرير الماوس */
-    transform: scale(1.02);
-}
-
-.action-btn:hover {
-    background: var(--primary);
-    color: var(--bg-dark);
-    font-weight: bold;
-    border-color: var(--primary);
 }
 
 .badge {
