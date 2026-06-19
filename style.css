@@ -83,7 +83,6 @@ header {
     overflow: hidden;
 }
 
-/* تأثير الإضاءة الدوارة عند الوقوف على الكارت */
 .card:hover {
     transform: translateY(-15px) scale(1.02);
     border-color: var(--primary);
@@ -111,6 +110,33 @@ header {
 .card p {
     color: var(--text-dim);
     line-height: 1.6;
+}
+
+/* التعديلات الجديدة للأزرار */
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.action-btn {
+    display: block;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.action-btn:hover {
+    background: var(--primary);
+    color: var(--bg-dark);
+    font-weight: bold;
+    border-color: var(--primary);
 }
 
 .badge {
