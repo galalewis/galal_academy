@@ -122,14 +122,21 @@ header {
 
 .action-btn {
     display: block;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-white);
+    padding: 12px 20px;
+    margin-bottom: 10px; /* مسافة بين الأزرار */
+    background: #00b4d8; /* هذا هو اللون الأزرق السماوي (يمكنك تغييره حسب الرغبة) */
+    color: white;         /* لون النص */
     text-decoration: none;
-    border-radius: 12px;
+    border-radius: 8px;   /* حواف دائرية للمربعات */
+    text-align: center;
+    font-weight: bold;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
+    border: none;
+}
+
+.action-btn:hover {
+    background: #0096c7; /* لون أغمق قليلاً عند تمرير الماوس */
+    transform: scale(1.02);
 }
 
 .action-btn:hover {
